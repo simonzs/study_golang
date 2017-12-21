@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 
-	"golang.org/x/tools/container/intsets"
 	"imooc.com/ccmouse/learngo/tree"
 )
 
@@ -24,16 +23,6 @@ func (myNode *myTreeNode) postOrder() {
 	myNode.node.Print()
 }
 
-func testSparse() {
-	s := intsets.Sparse{}
-
-	s.Insert(1)
-	s.Insert(1000)
-	s.Insert(1000000)
-	fmt.Println(s.Has(1000))
-	fmt.Println(s.Has(10000))
-}
-
 func main() {
 	var root tree.Node
 
@@ -45,10 +34,10 @@ func main() {
 	root.Right.Left.SetValue(4)
 
 	root.Traverse()
-	fmt.Println()
-	myRoot := myTreeNode{&root}
-	myRoot.postOrder()
-	fmt.Println()
 
-	testSparse()
+	nodeCount := 0
+	root.TraverseFunc(func(node *tree.Node) {
+		nodeCount++
+	})
+	fmt.Println("Node count:", nodeCount)
 }
