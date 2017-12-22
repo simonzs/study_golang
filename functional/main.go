@@ -1,10 +1,12 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"io"
-	"bufio"
 	"strings"
+
+	"imooc.com/ccmouse/learngo/functional/fib"
 )
 
 func adder() func(int) int {
@@ -12,15 +14,6 @@ func adder() func(int) int {
 	return func(v int) int {
 		sum += v
 		return sum
-	}
-}
-
-// 1 1 2 3 5 8 13 21 ...
-func fibonacci() func() int {
-	a, b := 0, 1
-	return func() int {
-		a, b = b, a + b
-		return a
 	}
 }
 
@@ -36,12 +29,12 @@ func (g intGen) Read(
 func printFileContents(reader io.Reader) {
 	scanner := bufio.NewScanner(reader)
 
-	for i :=0; i < 15 && scanner.Scan(); i++ {
+	for i := 0; i < 15 && scanner.Scan(); i++ {
 		fmt.Println(scanner.Text())
 	}
 }
 
 func main() {
-	var f intGen = fibonacci()
+	var f intGen = fib.Fibonacci()
 	printFileContents(f)
 }
