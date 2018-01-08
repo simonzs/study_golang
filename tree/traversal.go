@@ -3,8 +3,8 @@ package tree
 import "fmt"
 
 func (node *Node) Traverse() {
-	node.TraverseFunc(func(node *Node) {
-		node.Print()
+	node.TraverseFunc(func(n *Node) {
+		n.Print()
 	})
 	fmt.Println()
 }

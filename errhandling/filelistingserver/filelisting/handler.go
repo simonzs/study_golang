@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"os"
 	"strings"
+	"fmt"
 )
 
 const prefix = "/list/"
@@ -21,6 +22,7 @@ func (e userError) Message() string {
 
 func HandleFileList(writer http.ResponseWriter,
 	request *http.Request) error {
+		fmt.Println()
 	if strings.Index(
 		request.URL.Path, prefix) != 0 {
 		return userError("path must start " +
