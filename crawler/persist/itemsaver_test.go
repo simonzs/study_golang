@@ -8,24 +8,30 @@ import (
 	"encoding/json"
 
 	"gopkg.in/olivere/elastic.v5"
+	"imooc.com/ccmouse/learngo/crawler/engine"
 	"imooc.com/ccmouse/learngo/crawler/model"
 )
 
 func TestSave(t *testing.T) {
-	expected := model.Profile{
-		Age:        34,
-		Height:     162,
-		Weight:     57,
-		Income:     "3001-5000元",
-		Gender:     "女",
-		Name:       "安静的雪",
-		Xinzuo:     "牡羊座",
-		Occupation: "人事/行政",
-		Marriage:   "离异",
-		House:      "已购房",
-		Hokou:      "山东菏泽",
-		Education:  "大学本科",
-		Car:        "未购车",
+	expected := engine.Item{
+		Url:  "http://album.zhenai.com/u/108906739",
+		Type: "zhenai",
+		Id:   "108906739",
+		Payload: model.Profile{
+			Age:        34,
+			Height:     162,
+			Weight:     57,
+			Income:     "3001-5000元",
+			Gender:     "女",
+			Name:       "安静的雪",
+			Xinzuo:     "牡羊座",
+			Occupation: "人事/行政",
+			Marriage:   "离异",
+			House:      "已购房",
+			Hokou:      "山东菏泽",
+			Education:  "大学本科",
+			Car:        "未购车",
+		},
 	}
 
 	// TODO: Try to start up elastic search
@@ -37,16 +43,19 @@ func TestSave(t *testing.T) {
 		panic(err)
 	}
 
-	id, err := save(expected)
+	const index = "dating_test"
+	// Save expected item
+	err = save(client, index, expected)
 
 	if err != nil {
 		panic(err)
 	}
 
+	// Fetch saved item
 	resp, err := client.Get().
-		Index("dating_profile").
-		Type("zhenai").
-		Id(id).
+		Index(index).
+		Type(expected.Type).
+		Id(expected.Id).
 		Do(context.Background())
 
 	if err != nil {
@@ -55,12 +64,14 @@ func TestSave(t *testing.T) {
 
 	t.Logf("%s", resp.Source)
 
-	var actual model.Profile
-	err = json.Unmarshal(*resp.Source, &actual)
-	if err != nil {
-		panic(err)
-	}
+	var actual engine.Item
+	json.Unmarshal(*resp.Source, &actual)
 
+	actualProfile, _ := model.FromJsonObj(
+		actual.Payload)
+	actual.Payload = actualProfile
+
+	// Verify result
 	if actual != expected {
 		t.Errorf("got %v; expected %v",
 			actual, expected)
