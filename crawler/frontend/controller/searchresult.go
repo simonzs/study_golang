@@ -50,12 +50,14 @@ func (h SearchResultHandler) ServeHTTP(
 	if err != nil {
 		http.Error(w, err.Error(),
 			http.StatusBadRequest)
+		return
 	}
 
 	err = h.view.Render(w, page)
 	if err != nil {
 		http.Error(w, err.Error(),
 			http.StatusBadRequest)
+		return
 	}
 }
 
