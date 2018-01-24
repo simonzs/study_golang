@@ -61,6 +61,8 @@ func (h SearchResultHandler) ServeHTTP(
 	}
 }
 
+const pageSize = 10
+
 func (h SearchResultHandler) getSearchResult(
 	q string, from int) (model.SearchResult, error) {
 	var result model.SearchResult
@@ -81,8 +83,13 @@ func (h SearchResultHandler) getSearchResult(
 	result.Start = from
 	result.Items = resp.Each(
 		reflect.TypeOf(engine.Item{}))
-	result.PrevFrom =
-		result.Start - len(result.Items)
+	if result.Start == 0 {
+		result.PrevFrom = -1
+	} else {
+		result.PrevFrom =
+			(result.Start - 1) /
+				pageSize * pageSize
+	}
 	result.NextFrom =
 		result.Start + len(result.Items)
 
