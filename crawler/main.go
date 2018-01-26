@@ -5,6 +5,7 @@ import (
 	"imooc.com/ccmouse/learngo/crawler/persist"
 	"imooc.com/ccmouse/learngo/crawler/scheduler"
 	"imooc.com/ccmouse/learngo/crawler/zhenai/parser"
+	"imooc.com/ccmouse/learngo/crawler_distributed/config"
 )
 
 func main() {
@@ -21,7 +22,9 @@ func main() {
 	}
 
 	e.Run(engine.Request{
-		Url:        "http://www.zhenai.com/zhenghun",
-		ParserFunc: parser.ParseCityList,
+		Url: "http://www.zhenai.com/zhenghun",
+		Parser: engine.NewFuncParser(
+			parser.ParseCityList,
+			config.ParseCityList),
 	})
 }

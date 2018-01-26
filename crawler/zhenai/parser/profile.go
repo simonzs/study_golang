@@ -6,6 +6,7 @@ import (
 
 	"imooc.com/ccmouse/learngo/crawler/engine"
 	"imooc.com/ccmouse/learngo/crawler/model"
+	"imooc.com/ccmouse/learngo/crawler_distributed/config"
 )
 
 var ageRe = regexp.MustCompile(
@@ -37,7 +38,7 @@ var guessRe = regexp.MustCompile(
 var idUrlRe = regexp.MustCompile(
 	`http://album.zhenai.com/u/([\d]+)`)
 
-func ParseProfile(
+func parseProfile(
 	contents []byte, url string,
 	name string) engine.ParseResult {
 	profile := model.Profile{}
@@ -98,7 +99,7 @@ func ParseProfile(
 		result.Requests = append(result.Requests,
 			engine.Request{
 				Url: string(m[1]),
-				ParserFunc: ProfileParser(
+				Parser: NewProfileParser(
 					string(m[2])),
 			})
 	}
@@ -117,10 +118,24 @@ func extractString(
 	}
 }
 
-func ProfileParser(
-	name string) engine.ParserFunc {
-	return func(
-		c []byte, url string) engine.ParseResult {
-		return ParseProfile(c, url, name)
+type ProfileParser struct {
+	userName string
+}
+
+func (p *ProfileParser) Parse(
+	contents []byte,
+	url string) engine.ParseResult {
+	return parseProfile(contents, url, p.userName)
+}
+
+func (p *ProfileParser) Serialize() (
+	name string, args interface{}) {
+	return config.ParseProfile, p.userName
+}
+
+func NewProfileParser(
+	name string) *ProfileParser {
+	return &ProfileParser{
+		userName: name,
 	}
 }

@@ -4,6 +4,7 @@ import (
 	"regexp"
 
 	"imooc.com/ccmouse/learngo/crawler/engine"
+	"imooc.com/ccmouse/learngo/crawler_distributed/config"
 )
 
 var (
@@ -23,7 +24,7 @@ func ParseCity(
 		result.Requests = append(
 			result.Requests, engine.Request{
 				Url: string(m[1]),
-				ParserFunc: ProfileParser(
+				Parser: NewProfileParser(
 					string(m[2])),
 			})
 	}
@@ -33,8 +34,9 @@ func ParseCity(
 	for _, m := range matches {
 		result.Requests = append(result.Requests,
 			engine.Request{
-				Url:        string(m[1]),
-				ParserFunc: ParseCity,
+				Url: string(m[1]),
+				Parser: engine.NewFuncParser(
+					ParseCity, config.ParseCity),
 			})
 	}
 

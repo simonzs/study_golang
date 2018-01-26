@@ -16,7 +16,7 @@ func TestParseProfile(t *testing.T) {
 		panic(err)
 	}
 
-	result := ParseProfile(contents,
+	result := parseProfile(contents,
 		"http://album.zhenai.com/u/108906739",
 		"安静的雪")
 
