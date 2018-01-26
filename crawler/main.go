@@ -16,9 +16,10 @@ func main() {
 	}
 
 	e := engine.ConcurrentEngine{
-		Scheduler:   &scheduler.QueuedScheduler{},
-		WorkerCount: 100,
-		ItemChan:    itemChan,
+		Scheduler:        &scheduler.QueuedScheduler{},
+		WorkerCount:      100,
+		ItemChan:         itemChan,
+		RequestProcessor: engine.Worker,
 	}
 
 	e.Run(engine.Request{
