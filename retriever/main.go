@@ -48,7 +48,7 @@ func main() {
 	var r Retriever
 
 	mockRetriever := mock.Retriever{
-		"this is a fake imooc.com"}
+		Contents: "this is a fake imooc.com"}
 	r = &mockRetriever
 	inspect(r)
 
@@ -59,8 +59,8 @@ func main() {
 	inspect(r)
 
 	// Type assertion
-	if mock, ok := r.(*mock.Retriever); ok {
-		fmt.Println(mock.Contents)
+	if mockRetriever, ok := r.(*mock.Retriever); ok {
+		fmt.Println(mockRetriever.Contents)
 	} else {
 		fmt.Println("r is not a mock retriever")
 	}
