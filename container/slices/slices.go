@@ -50,6 +50,9 @@ func main() {
 	// s4 and s5 no longer view arr.
 	fmt.Println("arr =", arr)
 
-	// Then we demo slice ops.
-	sliceOps()
+	// Uncomment to run sliceOps demo.
+	// If we see undefined: sliceOps
+	// please try go run slices.go sliceops.go
+	fmt.Println("Uncomment to see sliceOps demo")
+	// sliceOps()
 }

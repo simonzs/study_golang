@@ -24,6 +24,9 @@ func grade(score int) string {
 }
 
 func main() {
+	// If "abc.txt" is not found,
+	// please check what current directory is,
+	// and change filename accordingly.
 	const filename = "abc.txt"
 	if contents, err := ioutil.ReadFile(filename); err != nil {
 		fmt.Println(err)
@@ -38,6 +41,7 @@ func main() {
 		grade(82),
 		grade(99),
 		grade(100),
-		grade(-3),
+		// Uncomment to see it panics.
+		// grade(-3),
 	)
 }

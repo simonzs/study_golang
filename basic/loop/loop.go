@@ -42,6 +42,7 @@ func forever() {
 }
 
 func main() {
+	fmt.Println("convertToBin results:")
 	fmt.Println(
 		convertToBin(5),  // 101
 		convertToBin(13), // 1101
@@ -49,7 +50,10 @@ func main() {
 		convertToBin(0),
 	)
 
+	fmt.Println("abc.txt contents:")
 	printFile("basic/branch/abc.txt")
+
+	fmt.Println("printing a string:")
 	s := `abc"d"
 	kkkk
 	123
@@ -57,5 +61,6 @@ func main() {
 	p`
 	printFileContents(strings.NewReader(s))
 
-	forever()
+	// Uncomment to see it runs forever
+	// forever()
 }

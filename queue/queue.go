@@ -1,6 +1,6 @@
 package queue
 
-// An FIFO queue.
+// A FIFO queue.
 type Queue []int
 
 // Pushes the element into the queue.

@@ -105,4 +105,6 @@ func main() {
 		}
 		fmt.Println()
 	}
+
+	// TODO: construct path from steps
 }

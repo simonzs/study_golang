@@ -11,8 +11,8 @@ import (
 	"testing"
 )
 
-func errPanic(writer http.ResponseWriter,
-	request *http.Request) error {
+func errPanic(_ http.ResponseWriter,
+	_ *http.Request) error {
 	panic(123)
 }
 
@@ -26,28 +26,28 @@ func (e testingUserError) Message() string {
 	return string(e)
 }
 
-func errUserError(writer http.ResponseWriter,
-	request *http.Request) error {
+func errUserError(_ http.ResponseWriter,
+	_ *http.Request) error {
 	return testingUserError("user error")
 }
 
-func errNotFound(writer http.ResponseWriter,
-	request *http.Request) error {
+func errNotFound(_ http.ResponseWriter,
+	_ *http.Request) error {
 	return os.ErrNotExist
 }
 
-func errNoPermission(writer http.ResponseWriter,
-	request *http.Request) error {
+func errNoPermission(_ http.ResponseWriter,
+	_ *http.Request) error {
 	return os.ErrPermission
 }
 
-func errUnknown(writer http.ResponseWriter,
-	request *http.Request) error {
+func errUnknown(_ http.ResponseWriter,
+	_ *http.Request) error {
 	return errors.New("unknown error")
 }
 
 func noError(writer http.ResponseWriter,
-	request *http.Request) error {
+	_ *http.Request) error {
 	fmt.Fprintln(writer, "no error")
 	return nil
 }

@@ -47,9 +47,9 @@ func session(s RetrieverPoster) string {
 func main() {
 	var r Retriever
 
-	retriever := mock.Retriever{
+	mockRetriever := mock.Retriever{
 		"this is a fake imooc.com"}
-	r = &retriever
+	r = &mockRetriever
 	inspect(r)
 
 	r = &real.Retriever{
@@ -59,20 +59,21 @@ func main() {
 	inspect(r)
 
 	// Type assertion
-	if mockRetriever, ok := r.(*mock.Retriever); ok {
-		fmt.Println(mockRetriever.Contents)
+	if mock, ok := r.(*mock.Retriever); ok {
+		fmt.Println(mock.Contents)
 	} else {
-		fmt.Println("not a mock retriever")
+		fmt.Println("r is not a mock retriever")
 	}
 
-	fmt.Println("Try a session")
-	fmt.Println(session(&retriever))
+	fmt.Println(
+		"Try a session with mockRetriever")
+	fmt.Println(session(&mockRetriever))
 }
 
 func inspect(r Retriever) {
 	fmt.Println("Inspecting", r)
-	fmt.Printf(" > %T %v\n", r, r)
-	fmt.Print(" > Type switch:")
+	fmt.Printf(" > Type:%T Value:%v\n", r, r)
+	fmt.Print(" > Type switch: ")
 	switch v := r.(type) {
 	case *mock.Retriever:
 		fmt.Println("Contents:", v.Contents)

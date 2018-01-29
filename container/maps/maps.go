@@ -14,27 +14,30 @@ func main() {
 
 	var m3 map[string]int // m3 == nil
 
+	fmt.Println("m, m2, m3:")
 	fmt.Println(m, m2, m3)
 
-	fmt.Println("Traversing map")
+	fmt.Println("Traversing map m")
 	for k, v := range m {
 		fmt.Println(k, v)
 	}
 
 	fmt.Println("Getting values")
-	courseName, ok := m["course"]
-	fmt.Println(courseName, ok)
+	courseName := m["course"]
+	fmt.Println(`m["course"] =`, courseName)
 	if causeName, ok := m["cause"]; ok {
 		fmt.Println(causeName)
 	} else {
-		fmt.Println("key does not exist")
+		fmt.Println("key 'cause' does not exist")
 	}
 
 	fmt.Println("Deleting values")
 	name, ok := m["name"]
-	fmt.Println(name, ok)
+	fmt.Printf("m[%q] before delete: %q, %v\n",
+		"name", name, ok)
 
 	delete(m, "name")
 	name, ok = m["name"]
-	fmt.Println(name, ok)
+	fmt.Printf("m[%q] after delete: %q, %v\n",
+		"name", name, ok)
 }
