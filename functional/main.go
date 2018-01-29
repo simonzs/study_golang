@@ -5,18 +5,9 @@ import (
 	"fmt"
 	"io"
 	"strings"
-)
 
-// 1, 1, 2, 3, 5, 8, 13, ...
-//    a, b
-//       a, b
-func fibonacci() intGen {
-	a, b := 0, 1
-	return func() int {
-		a, b = b, a+b
-		return a
-	}
-}
+	"imooc.com/ccmouse/learngo/functional/fib"
+)
 
 type intGen func() int
 
@@ -41,6 +32,6 @@ func printFileContents(reader io.Reader) {
 }
 
 func main() {
-	f := fibonacci()
+	var f intGen = fib.Fibonacci()
 	printFileContents(f)
 }
