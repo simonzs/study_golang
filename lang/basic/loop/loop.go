@@ -51,7 +51,7 @@ func main() {
 	)
 
 	fmt.Println("abc.txt contents:")
-	printFile("basic/branch/abc.txt")
+	printFile("lang/basic/branch/abc.txt")
 
 	fmt.Println("printing a string:")
 	s := `abc"d"

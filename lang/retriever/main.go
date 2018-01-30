@@ -5,8 +5,8 @@ import (
 
 	"time"
 
-	"imooc.com/ccmouse/learngo/retriever/mock"
-	"imooc.com/ccmouse/learngo/retriever/real"
+	"imooc.com/ccmouse/learngo/lang/retriever/mock"
+	"imooc.com/ccmouse/learngo/lang/retriever/real"
 )
 
 type Retriever interface {

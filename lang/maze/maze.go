@@ -94,7 +94,7 @@ func walk(maze [][]int,
 }
 
 func main() {
-	maze := readMaze("maze/maze.in")
+	maze := readMaze("lang/maze/maze.in")
 
 	steps := walk(maze, point{0, 0},
 		point{len(maze) - 1, len(maze[0]) - 1})
