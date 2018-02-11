@@ -26,7 +26,6 @@ func ServeRpc(
 
 		go jsonrpc.ServeConn(conn)
 	}
-	return nil
 }
 
 func NewClient(host string) (*rpc.Client, error) {
