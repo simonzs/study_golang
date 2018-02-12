@@ -22,6 +22,8 @@ func TestCrawlService(t *testing.T) {
 		panic(err)
 	}
 
+	// TODO: Use a fake fetcher to handle the url.
+	// So we don't get data from zhenai.com
 	req := worker.Request{
 		Url: "http://album.zhenai.com/u/108906739",
 		Parser: worker.SerializedParser{
@@ -38,4 +40,6 @@ func TestCrawlService(t *testing.T) {
 	} else {
 		fmt.Println(result)
 	}
+
+	// TODO: Verify results
 }

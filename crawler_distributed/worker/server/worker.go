@@ -7,6 +7,7 @@ import (
 
 	"flag"
 
+	"imooc.com/ccmouse/learngo/crawler/fetcher"
 	"imooc.com/ccmouse/learngo/crawler_distributed/rpcsupport"
 	"imooc.com/ccmouse/learngo/crawler_distributed/worker"
 )
@@ -16,6 +17,7 @@ var port = flag.Int("port", 0,
 
 func main() {
 	flag.Parse()
+	fetcher.SetVerboseLogging()
 	if *port == 0 {
 		fmt.Println("must specify a port")
 		return
