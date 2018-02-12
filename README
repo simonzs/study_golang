@@ -1,0 +1,13 @@
+在这里非常感谢大加对这门课程的支持，希望同学们都能够获得
+收获。以下是我录制完视频后又对代码做的一些小修改，包括修
+复一些低级错误，以及美化。
+
+crawler_distributed/rpcsupport/rpc.go ServeRpc
+    去掉了最后的return nil
+
+crawler/frontend/controller/searchresult.go
+    修复了"上一页"计算错误的问题
+
+crawler/config/config.go
+    将大部分config移动到这里，这样crawler不会再依赖
+    crawler_distributed

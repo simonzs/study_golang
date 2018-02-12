@@ -8,7 +8,7 @@ import (
 	"flag"
 
 	"gopkg.in/olivere/elastic.v5"
-	"imooc.com/ccmouse/learngo/crawler_distributed/config"
+	"imooc.com/ccmouse/learngo/crawler/config"
 	"imooc.com/ccmouse/learngo/crawler_distributed/persist"
 	"imooc.com/ccmouse/learngo/crawler_distributed/rpcsupport"
 )

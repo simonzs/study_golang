@@ -3,8 +3,8 @@ package parser
 import (
 	"regexp"
 
+	"imooc.com/ccmouse/learngo/crawler/config"
 	"imooc.com/ccmouse/learngo/crawler/engine"
-	"imooc.com/ccmouse/learngo/crawler_distributed/config"
 )
 
 var (

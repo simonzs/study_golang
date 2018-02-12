@@ -9,10 +9,10 @@ import (
 
 	"strings"
 
+	"imooc.com/ccmouse/learngo/crawler/config"
 	"imooc.com/ccmouse/learngo/crawler/engine"
 	"imooc.com/ccmouse/learngo/crawler/scheduler"
 	"imooc.com/ccmouse/learngo/crawler/zhenai/parser"
-	"imooc.com/ccmouse/learngo/crawler_distributed/config"
 	itemsaver "imooc.com/ccmouse/learngo/crawler_distributed/persist/client"
 	"imooc.com/ccmouse/learngo/crawler_distributed/rpcsupport"
 	worker "imooc.com/ccmouse/learngo/crawler_distributed/worker/client"

@@ -14,7 +14,7 @@ import (
 	"golang.org/x/text/encoding"
 	"golang.org/x/text/encoding/unicode"
 	"golang.org/x/text/transform"
-	"imooc.com/ccmouse/learngo/crawler_distributed/config"
+	"imooc.com/ccmouse/learngo/crawler/config"
 )
 
 var rateLimiter = time.Tick(

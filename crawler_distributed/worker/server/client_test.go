@@ -5,7 +5,8 @@ import (
 	"testing"
 	"time"
 
-	"imooc.com/ccmouse/learngo/crawler_distributed/config"
+	"imooc.com/ccmouse/learngo/crawler/config"
+	rpcnames "imooc.com/ccmouse/learngo/crawler_distributed/config"
 	"imooc.com/ccmouse/learngo/crawler_distributed/rpcsupport"
 	"imooc.com/ccmouse/learngo/crawler_distributed/worker"
 )
@@ -30,7 +31,7 @@ func TestCrawlService(t *testing.T) {
 	}
 	var result worker.ParseResult
 	err = client.Call(
-		config.CrawlServiceRpc, req, &result)
+		rpcnames.CrawlServiceRpc, req, &result)
 
 	if err != nil {
 		t.Error(err)
