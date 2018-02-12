@@ -49,4 +49,6 @@ func TestSearchResultView_Render(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	}
+
+	// TODO: verify contents in template.test.html
 }
