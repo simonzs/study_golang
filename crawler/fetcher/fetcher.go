@@ -17,12 +17,21 @@ import (
 	"imooc.com/ccmouse/learngo/crawler/config"
 )
 
-var rateLimiter = time.Tick(
-	time.Second / config.Qps)
+var (
+	rateLimiter = time.Tick(
+		time.Second / config.Qps)
+	verboseLogging = false
+)
+
+func SetVerboseLogging() {
+	verboseLogging = true
+}
 
 func Fetch(url string) ([]byte, error) {
 	<-rateLimiter
-	log.Printf("Fetching url %s", url)
+	if verboseLogging {
+		log.Printf("Fetching url %s", url)
+	}
 	resp, err := http.Get(url)
 	if err != nil {
 		return nil, err

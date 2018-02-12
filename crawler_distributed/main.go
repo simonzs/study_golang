@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"net/rpc"
 
 	"log"
@@ -11,6 +12,7 @@ import (
 
 	"imooc.com/ccmouse/learngo/crawler/config"
 	"imooc.com/ccmouse/learngo/crawler/engine"
+	"imooc.com/ccmouse/learngo/crawler/fetcher"
 	"imooc.com/ccmouse/learngo/crawler/scheduler"
 	"imooc.com/ccmouse/learngo/crawler/zhenai/parser"
 	itemsaver "imooc.com/ccmouse/learngo/crawler_distributed/persist/client"
@@ -29,14 +31,20 @@ var (
 
 func main() {
 	flag.Parse()
+
+	fetcher.SetVerboseLogging()
+
 	itemChan, err := itemsaver.ItemSaver(
 		*itemSaverHost)
 	if err != nil {
 		panic(err)
 	}
 
-	pool := createClientPool(
+	pool, err := createClientPool(
 		strings.Split(*workerHosts, ","))
+	if err != nil {
+		panic(err)
+	}
 
 	processor := worker.CreateProcessor(pool)
 
@@ -56,7 +64,7 @@ func main() {
 }
 
 func createClientPool(
-	hosts []string) chan *rpc.Client {
+	hosts []string) (chan *rpc.Client, error) {
 	var clients []*rpc.Client
 	for _, h := range hosts {
 		client, err := rpcsupport.NewClient(h)
@@ -70,6 +78,10 @@ func createClientPool(
 		}
 	}
 
+	if len(clients) == 0 {
+		return nil, errors.New(
+			"no connections available")
+	}
 	out := make(chan *rpc.Client)
 	go func() {
 		for {
@@ -78,5 +90,5 @@ func createClientPool(
 			}
 		}
 	}()
-	return out
+	return out, nil
 }
