@@ -14,6 +14,10 @@ func TestSearchResultView_Render(t *testing.T) {
 		"template.html")
 
 	out, err := os.Create("template.test.html")
+	if err != nil {
+		panic(err)
+	}
+	defer out.Close()
 
 	page := model.SearchResult{}
 	page.Hits = 123
@@ -43,6 +47,6 @@ func TestSearchResultView_Render(t *testing.T) {
 
 	err = view.Render(out, page)
 	if err != nil {
-		panic(err)
+		t.Error(err)
 	}
 }

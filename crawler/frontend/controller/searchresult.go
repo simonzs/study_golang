@@ -11,6 +11,7 @@ import (
 	"regexp"
 
 	"gopkg.in/olivere/elastic.v5"
+	"imooc.com/ccmouse/learngo/crawler/config"
 	"imooc.com/ccmouse/learngo/crawler/engine"
 	"imooc.com/ccmouse/learngo/crawler/frontend/model"
 	"imooc.com/ccmouse/learngo/crawler/frontend/view"
@@ -69,7 +70,7 @@ func (h SearchResultHandler) getSearchResult(
 	result.Query = q
 
 	resp, err := h.client.
-		Search("dating_profile").
+		Search(config.ElasticIndex).
 		Query(elastic.NewQueryStringQuery(
 			rewriteQueryString(q))).
 		From(from).
@@ -96,6 +97,8 @@ func (h SearchResultHandler) getSearchResult(
 	return result, nil
 }
 
+// Rewrites query string. Replaces field names
+// like "Age" to "Payload.Age"
 func rewriteQueryString(q string) string {
 	re := regexp.MustCompile(`([A-Z][a-z]*):`)
 	return re.ReplaceAllString(q, "Payload.$1:")

@@ -60,9 +60,5 @@ func Save(
 	_, err := indexService.
 		Do(context.Background())
 
-	if err != nil {
-		return err
-	}
-
-	return nil
+	return err
 }
