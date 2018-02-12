@@ -56,7 +56,7 @@ func main() {
 	}
 
 	e.Run(engine.Request{
-		Url: "http://www.zhenai.com/zhenghun",
+		Url: "http://www.starter.url.here",
 		Parser: engine.NewFuncParser(
 			parser.ParseCityList,
 			config.ParseCityList),

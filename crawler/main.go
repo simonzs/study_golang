@@ -10,7 +10,7 @@ import (
 
 func main() {
 	itemChan, err := persist.ItemSaver(
-		"dating_profile")
+		config.ElasticIndex)
 	if err != nil {
 		panic(err)
 	}
@@ -23,7 +23,7 @@ func main() {
 	}
 
 	e.Run(engine.Request{
-		Url: "http://www.zhenai.com/zhenghun",
+		Url: "http://www.starter.url.here",
 		Parser: engine.NewFuncParser(
 			parser.ParseCityList,
 			config.ParseCityList),

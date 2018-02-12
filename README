@@ -18,3 +18,6 @@ crawler_distributed/main.go
 crawler/fetcher/fetcher.go
     提取verboseLogging参数以供配置
 
+crawler/main.go & crawler_distributed/main.go
+    隐去爬虫起始页面url
+
