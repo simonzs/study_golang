@@ -21,3 +21,6 @@ crawler/fetcher/fetcher.go
 crawler/main.go & crawler_distributed/main.go
     隐去爬虫起始页面url
 
+crawler/engine/concurrent.go
+    修复了go func() { e.ItemChan <- item }()中
+    分发item时变量作用域的问题

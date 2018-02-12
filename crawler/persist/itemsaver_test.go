@@ -62,7 +62,7 @@ func TestSave(t *testing.T) {
 		panic(err)
 	}
 
-	t.Logf("%s", resp.Source)
+	t.Logf("%s", *resp.Source)
 
 	var actual engine.Item
 	json.Unmarshal(*resp.Source, &actual)
