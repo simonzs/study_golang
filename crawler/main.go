@@ -5,7 +5,7 @@ import (
 	"imooc.com/ccmouse/learngo/crawler/engine"
 	"imooc.com/ccmouse/learngo/crawler/persist"
 	"imooc.com/ccmouse/learngo/crawler/scheduler"
-	"imooc.com/ccmouse/learngo/crawler/zhenai/parser"
+	"imooc.com/ccmouse/learngo/crawler/xcar/parser"
 )
 
 func main() {
@@ -25,7 +25,7 @@ func main() {
 	e.Run(engine.Request{
 		Url: "http://www.starter.url.here",
 		Parser: engine.NewFuncParser(
-			parser.ParseCityList,
-			config.ParseCityList),
+			parser.ParseCarList,
+			config.ParseCarList),
 	})
 }

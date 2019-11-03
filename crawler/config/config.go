@@ -5,10 +5,15 @@ const (
 	ParseCity     = "ParseCity"
 	ParseCityList = "ParseCityList"
 	ParseProfile  = "ParseProfile"
-	NilParser     = "NilParser"
+
+	ParseCarDetail = "ParseCarDetail"
+	ParseCarList   = "ParseCarList"
+	ParseCarModel  = "ParseCarModel"
+
+	NilParser = "NilParser"
 
 	// ElasticSearch
-	ElasticIndex = "dating_profile"
+	ElasticIndex = "car_profile"
 
 	// Rate limiting
 	Qps = 20

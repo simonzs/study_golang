@@ -35,17 +35,15 @@
             <tr>
                 <td><a href="{{.Url}}">{{.Payload.Name}}</a></td>
                 {{with .Payload}}
-                <td>{{.Gender}}</td>
-                <td>{{.Age}}</td>
-                <td>{{.Height}}cm</td>
-                <td>{{.Weight}}kg</td>
-                <td>{{.Income}}</td>
-                <td>{{.Education}}</td>
-                <td>{{.Occupation}}</td>
-                <td>{{.Hokou}}</td>
-                <td>{{.Xinzuo}}</td>
-                <td>{{.House}}</td>
-                <td>{{.Car}}</td>
+                <td>{{.Name}}</td>
+                <td>{{.Price}}万元</td>
+                <td>{{.Size}}</td>
+                <td>{{.Fuel}}L/100km</td>
+                <td>{{.Transmission}}</td>
+                <td>{{.Engine}}</td>
+                <td>{{.Displacement}}L</td>
+                <td>{{.MaxSpeed}}km/h</td>
+                <td>{{.Acceleration}}s,0-100km/h</td>
                 {{end}}
             </tr>
             {{else}}

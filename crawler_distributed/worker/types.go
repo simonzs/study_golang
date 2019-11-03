@@ -8,7 +8,8 @@ import (
 
 	"imooc.com/ccmouse/learngo/crawler/config"
 	"imooc.com/ccmouse/learngo/crawler/engine"
-	"imooc.com/ccmouse/learngo/crawler/zhenai/parser"
+	xcar "imooc.com/ccmouse/learngo/crawler/xcar/parser"
+	zhenai "imooc.com/ccmouse/learngo/crawler/zhenai/parser"
 )
 
 type SerializedParser struct {
@@ -86,22 +87,35 @@ func deserializeParser(
 	switch p.Name {
 	case config.ParseCityList:
 		return engine.NewFuncParser(
-			parser.ParseCityList,
+			zhenai.ParseCityList,
 			config.ParseCityList), nil
 	case config.ParseCity:
 		return engine.NewFuncParser(
-			parser.ParseCity,
+			zhenai.ParseCity,
 			config.ParseCity), nil
-	case config.NilParser:
-		return engine.NilParser{}, nil
+
 	case config.ParseProfile:
 		if userName, ok := p.Args.(string); ok {
-			return parser.NewProfileParser(
+			return zhenai.NewProfileParser(
 				userName), nil
 		} else {
 			return nil, fmt.Errorf("invalid "+
 				"arg: %v", p.Args)
 		}
+	case config.ParseCarDetail:
+		return engine.NewFuncParser(
+			xcar.ParseCarDetail,
+			config.ParseCarDetail), nil
+	case config.ParseCarModel:
+		return engine.NewFuncParser(
+			xcar.ParseCarModel,
+			config.ParseCarModel), nil
+	case config.ParseCarList:
+		return engine.NewFuncParser(
+			xcar.ParseCarList,
+			config.ParseCarList), nil
+	case config.NilParser:
+		return engine.NilParser{}, nil
 	default:
 		return nil, errors.New(
 			"unknown parser name")
