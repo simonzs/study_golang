@@ -1,13 +1,11 @@
 package persist
 
 import (
+	"context"
+	"encoding/json"
 	"testing"
 
-	"context"
-
-	"encoding/json"
-
-	"gopkg.in/olivere/elastic.v5"
+	"github.com/olivere/elastic/v7"
 	"imooc.com/ccmouse/learngo/crawler/engine"
 	"imooc.com/ccmouse/learngo/crawler/model"
 )
@@ -62,10 +60,10 @@ func TestSave(t *testing.T) {
 		panic(err)
 	}
 
-	t.Logf("%s", *resp.Source)
+	t.Logf("%s", resp.Source)
 
 	var actual engine.Item
-	json.Unmarshal(*resp.Source, &actual)
+	json.Unmarshal(resp.Source, &actual)
 
 	actualProfile, _ := model.FromJsonObj(
 		actual.Payload)

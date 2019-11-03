@@ -1,16 +1,14 @@
 package controller
 
 import (
+	"context"
 	"net/http"
+	"reflect"
+	"regexp"
 	"strconv"
 	"strings"
 
-	"context"
-	"reflect"
-
-	"regexp"
-
-	"gopkg.in/olivere/elastic.v5"
+	"github.com/olivere/elastic/v7"
 	"imooc.com/ccmouse/learngo/crawler/config"
 	"imooc.com/ccmouse/learngo/crawler/engine"
 	"imooc.com/ccmouse/learngo/crawler/frontend/model"
