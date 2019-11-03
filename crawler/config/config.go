@@ -16,5 +16,5 @@ const (
 	ElasticIndex = "car_profile"
 
 	// Rate limiting
-	Qps = 20
+	Qps = 2
 )
