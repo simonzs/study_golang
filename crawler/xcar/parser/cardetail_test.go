@@ -25,7 +25,7 @@ func TestParseCarDetail(t *testing.T) {
 			Price:        47.18,
 			ImageURL:     "http://img1.xcarimg.com/b63/s8386/m_20170616000036181753843373443.jpg-280x210.jpg",
 			Size:         "4191×1832×1353mm",
-			Fuel:         6.7,
+			Fuel:         16.7,
 			Transmission: "6挡双离合",
 			Engine:       "169kW(2.0L涡轮增压)",
 			Displacement: 2,

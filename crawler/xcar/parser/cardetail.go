@@ -14,7 +14,7 @@ var priceReTmpl = `<a href="/%s/baojia/".*>(\d+\.\d+)</a>`
 var nameRe = regexp.MustCompile(`<title>【(.*)报价_图片_参数】.*</title>`)
 var carImageRe = regexp.MustCompile(`<img class="color_car_img_new" src="([^"]+)"`)
 var sizeRe = regexp.MustCompile(`<li.*车身尺寸.*<em>(\d+[^\d]\d+[^\d]\d+mm)`)
-var fuelRe = regexp.MustCompile(`<li.*工信部油耗.*(\d+\.\d+)L/100km`)
+var fuelRe = regexp.MustCompile(`<li.*工信部油耗.*<em>(\d+\.\d+)L/100km`)
 var transmissionRe = regexp.MustCompile(`<li.*变\s*速\s*箱.*<em>(.+)</em>`)
 var engineRe = regexp.MustCompile(`发\s*动\s*机.*\s*.*<.*>(\d+kW[^<]*)<`)
 var displacementRe = regexp.MustCompile(`<li.*排.*量.*(\d+\.\d+)L`)
