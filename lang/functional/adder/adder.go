@@ -3,13 +3,14 @@ package main
 import "fmt"
 
 func adder() func(int) int {
-	sum := 0
+	sum := 0 // 自由变量
 	return func(v int) int {
-		sum += v
+		sum += v // 局部变量
 		return sum
 	}
 }
 
+// “正规“ 函数式编程
 type iAdder func(int) (int, iAdder)
 
 func adder2(base int) iAdder {

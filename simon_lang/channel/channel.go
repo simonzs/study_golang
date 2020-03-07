@@ -6,24 +6,33 @@ import (
 )
 
 func worker(id int, c chan int) {
-	for n := range c {
-		fmt.Printf("Worker %d received %c\n",
-			id, n)
+	var n int
+	var ok bool
+	for {
+		if n, ok = <-c; !ok {
+			break
+		}
+		// time.Sleep(3 * time.Microsecond)
+		fmt.Printf("Worker %d received %d\n", id, n)
 	}
 }
 
-func createWorker(id int) chan<- int {
+func createWorker(id int) chan<- int { // 往chan发数据
+	// func createWorker(id int) <-chan int { // 从chan收数据
 	c := make(chan int)
 	go worker(id, c)
 	return c
 }
 
 func chanDemo() {
+	// var c chan int // c == nil
 	var channels [10]chan<- int
+	// c := make(chan int)
+
 	for i := 0; i < 10; i++ {
 		channels[i] = createWorker(i)
-	}
 
+	}
 	for i := 0; i < 10; i++ {
 		channels[i] <- 'a' + i
 	}
@@ -42,11 +51,12 @@ func bufferedChannel() {
 	c <- 'b'
 	c <- 'c'
 	c <- 'd'
+
 	time.Sleep(time.Millisecond)
 }
 
 func channelClose() {
-	c := make(chan int)
+	c := make(chan int, 3)
 	go worker(0, c)
 	c <- 'a'
 	c <- 'b'
@@ -57,10 +67,7 @@ func channelClose() {
 }
 
 func main() {
-	fmt.Println("Channel as first-class citizen") // 一等公民
-	chanDemo()
-	fmt.Println("Buffered channel")
-	bufferedChannel()
-	fmt.Println("Channel close and range")
+	// chanDemo()
+	// bufferedChannel()
 	channelClose()
 }
